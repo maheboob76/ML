@@ -89,9 +89,42 @@ def prepare_excel(source_dir):
         
     return main_list
     
+
 main_df = prepare_excel(DATA_DIR)
 
 ''' remove total '''
 df = main_df[ main_df.Candidate != 'Total' ]
 
 total_votes = df['Total_Votes'].sum() / 10000000
+
+''' top party by percentage of votes '''
+def calculate_top_party(df):
+    
+    df_party = df.groupby(['Party'])['Total_Votes'].sum()
+    df.reset_index(inplace = True) 
+    
+    df_party.sort_values(ascending = False)[:10].plot(kind='bar')
+    df_top_10 = df_party.sort_values(ascending = False)[:10]
+    df_top_10 = df_top_10/10000000
+    df_top_10 = 100 * df_top_10/total_votes
+    
+    return df_top_10
+
+
+#df_const_wise = df.groupby(['State', 'Constituency'])['Total_Votes'].nlargest(2)
+df_const_wise = df.groupby(['State', 'Constituency'])
+
+
+c = 0
+for k,v in df_const_wise:
+    print(k, ':', v[ v['Total_Votes'].max() == v['Total_Votes']]['Party'], v['Total_Votes'].max())
+    c +=1
+print(c)
+
+df_winner = pd.DataFrame()
+
+for k,v in df_const_wise:
+    print(k, ':', v.loc[df['Total_Votes'] == v['Total_Votes'].max()])
+    df_winner = df_winner.append(v.loc[v['Total_Votes'] == v['Total_Votes'].max()])
+
+d = df_winner.groupby(['Party']).count()
