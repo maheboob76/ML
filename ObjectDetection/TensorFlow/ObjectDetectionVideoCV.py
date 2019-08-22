@@ -54,6 +54,7 @@ cv2.resizeWindow('amaan',CV_WINDOW_WIDTH, CV_WINDOW_HEIGHT)
 # Darw a rectangle surrounding the object and its class name 
 def draw_pred(img, class_id, confidence, left, top, right, bottom, p, thickness=2):
     
+	
     # This is added as background may not be available in all the modesl
     class_id +=1
     #label = str(classes[class_id])
