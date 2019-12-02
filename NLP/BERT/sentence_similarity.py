@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """
+https://towardsdatascience.com/use-cases-of-googles-universal-sentence-encoder-in-production-dd5aaab4fc15
 Created on Sun Dec  1 14:26:45 2019
 
 @author: Amaan
