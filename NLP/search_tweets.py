@@ -1,8 +1,7 @@
 #https://www.codementor.io/ferrorodolfo/sentiment-analysis-on-trump-s-tweets-using-python-pltbvb4xr
 
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 27 11:42:18 2019
+"""Created on Wed Nov 27 11:42:18 2019
 
 @author: Amaan
 """
